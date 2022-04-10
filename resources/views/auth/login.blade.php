@@ -46,6 +46,11 @@
                                     <div class="p-5">
                                         <div class="text-center">
                                             <img src="../assets/img/csbnowlogo-colored.png" class="img-fluid pb-4" style="width:60%">
+                                            @if (session('status'))
+                                                <div class="alert alert-success" role="alert">
+                                                    {{ session('status') }}
+                                                </div>
+                                            @endif
                                         </div>
                                         <form class="user">
                                             <div class="form-group">
@@ -74,7 +79,7 @@
                                                     <label class="form-check-label" for="remember">Remember Me</label>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            <button type="submit" class="btn btn-success btn-user btn-block">
                                                 {{ __('Login') }}
                                             </button>
                                             <hr>
