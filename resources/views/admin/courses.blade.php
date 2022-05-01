@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Courses | CSBNow
+    Subjects | CSBNow
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Course</h5>
+        <h5 class="modal-title" id="exampleModalLabel">New Subject</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -21,12 +21,12 @@
 
         <div class="modal-body">
             <div class="mb-3">
-              <label for="course-title" class="col-form-label">Course Title:</label>
+              <label for="course-title" class="col-form-label">Subject Title:</label>
               <input type="text" name="course-title" class="form-control" id="course-title">
             </div>
             <div class="mb-3">
-              <label for="course-id" class="col-form-label">Course ID:</label>
-              <input type="text" name="course-id" class="form-control" id="course-id">
+              <label for="course-id" class="col-form-label">Subject ID:</label>
+              <input type="text" name="name" class="form-control" id="name">
             </div>
             <div class="mb-3">
               <label for="course-description" class="col-form-label">Description:</label>
@@ -35,7 +35,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success">Add Course</button>
+          <button type="submit" class="btn btn-success">Add Subject</button>
         </div>
       
       </form>
@@ -60,7 +60,7 @@
 
         <div class="modal-body">
           <input type="hidden" id="delete-course-id">
-          Are you sure you want to delete this course?
+          Are you sure you want to delete this subject?
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -73,8 +73,8 @@
   
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Courses</h1>
-                    <p class="mb-4">You can enroll new courses in this page.</p>
+    <h1 class="h3 mb-2 text-gray-800">Subjects</h1>
+                    <p class="mb-4">You can enroll new subjects in this page.</p>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -83,19 +83,17 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Courses</h6>
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Subjects</h6>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle"></i>  New Subject</button>
                         </div>
                         <div class="card-body">
-                            <div class="row pb-3 pl-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">New Course</button>
-                            </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Course ID</th>
-                                            <th>Course Title</th>
+                                            <th>Subject ID</th>
+                                            <th>Subject Title</th>
                                             <th class="col-md-5">Description</th>
                                             <th class="col-md-2">Action</th>
                                         </tr>

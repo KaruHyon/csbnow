@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<h1 class="h3 mb-2 text-gray-800">Edit Course</h1>
+<h1 class="h3 mb-2 text-gray-800">Edit Subject</h1>
                     <p class="mb-4">You are editing {{ $courses->title }}'s information.</p>
 
                     <!-- DataTales Example -->
@@ -21,12 +21,12 @@
                                     {{ method_field('PUT') }}
 
                                         <div class="mb-3">
-                                            <label for="course-title" class="col-form-label">Course Title:</label>
-                                            <input type="text" name="course-title" class="form-control" value=" {{ $courses->title }} ">
+                                            <label for="course-title" class="col-form-label">Subject Title:</label>
+                                            <input type="text" name="course-title" class="form-control" value=" {{ $courses->title }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="course-id" class="col-form-label">Course ID:</label>
-                                            <input type="text" name="course-id" class="form-control" value=" {{ $courses->id }} ">
+                                            <label for="course-id" class="col-form-label">Subject ID:</label>
+                                            <input type="text" name="name" class="form-control" value=" {{ $courses->id }}">
                                         </div>
                                         <div class="mb-3">
                                             <label for="course-description" class="col-form-label">Description:</label>

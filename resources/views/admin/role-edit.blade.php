@@ -16,14 +16,21 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                <form action="/role-update/{{ $users->id }}" method="POST">
+                                <form action="/role-update/{{ $users->id }}" method="POST" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
+
+                                    <div class="mb-3 text-center">
+                                        <label class="form-label">Profile Image</label><br>
+                                        <img class="img-profile rounded-circle" style="width:200px" src="../uploads/profile_imgs/{{ $users->profile_img }}">
+                                        <input type="file" name="profile_img" class="form-control-file">
+                                    </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
                                         <input type="text" class="form-control" name="username" value="{{ $users->name }}">
                                     </div>
+                                    
                                     <div class="mb-3">
                                     <label class="form-label">Role</label>
                                         <select class="form-control" name="usertype">

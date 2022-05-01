@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('verification_code')->nullable();
             $table->integer('is_verified')->default(0);
+            $table->string('profile_img')->nullable()->default('undraw_profile.svg');
             $table->rememberToken();
             $table->timestamps();
         });
