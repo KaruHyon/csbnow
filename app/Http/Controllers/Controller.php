@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Courses;
+use App\Models\Sections;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -19,10 +20,13 @@ class Controller extends BaseController
         // Load your objects
         //$user = Article::byDepartment('Loans')->get();
 
-        $courses = Courses::all();
+        $subjects = Courses::all();
+        $sections = Sections::all();
+        
 
         // Make it available to all views by sharing it
         //view()->share('loans_articles', $loans_articles);
-        view()->share('courses', $courses);
+        view()->share(['subjects' => $subjects, 'sections' => $sections]);
+        
     }
 }

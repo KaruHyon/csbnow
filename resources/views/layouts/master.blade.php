@@ -63,7 +63,7 @@
                         Administrator
                     </div>
 
-                    <!-- Nav Item - Utilities Collapse Menu -->
+                    <!-- Nav Item - User Levels Collapse Menu -->
                     <li class="nav-item {{ (request()->is('users*')) ? 'active' : '' }} {{ (request()->is('roles*')) ? 'active' : '' }} {{ (request()->is('permissions*')) ? 'active' : '' }}">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                             aria-expanded="true" aria-controls="collapseUtilities">
@@ -90,7 +90,7 @@
                 Settings
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Faculty Collapse Menu -->
             <li class="nav-item {{ 'r/teacher' == request()->path() ? 'active' : ''}} {{ 'd/$courses->id' == request()->path() ? 'active' : ''}}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse"
                     aria-expanded="true" aria-controls="collapse">
@@ -104,16 +104,16 @@
                             <a class="collapse-item" href=" {{ route('users.roledepts', 'teacher') }} ">Teachers</a>
                         @endcan
                         <h6 class="collapse-header">Departments:</h6>
-                        @foreach ($courses as $course) 
-                            @can( $course->id )
-                                <a class="collapse-item" href=" {{ route('users.depts', $course->id, 'teacher') }} ">{{ $course->id }}</a>
+                        @foreach ($subjects as $subject) 
+                            @can( $subject->id )
+                                <a class="collapse-item" href=" {{ route('users.depts', $subject->id) }} ">{{ $subject->title }}</a>
                             @endcan
                         @endforeach
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Students Collapse Menu -->
             <li class="nav-item {{ 'r/student' == request()->path() ? 'active' : ''}}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -125,13 +125,17 @@
                         <h6 class="collapse-header">Students:</h6>
                         <a class="collapse-item" href=" {{ route('users.roledepts', 'student') }} ">Students</a>
                         <h6 class="collapse-header">Sections:</h6>
-                        <a class="collapse-item" href="/courses">-</a>
+                        @foreach ($sections as $section) 
+                            @if ( Auth::user()->hasRole($section->id) )
+                                <a class="collapse-item" href=" {{ route('users.roledepts', $section->id) }} ">{{ $section->name }}</a>
+                            @endif
+                        @endforeach
                         <!-- <a class="collapse-item" href="cards.html">Lessons</a> -->
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Subjects Collapse Menu -->
             <li class="nav-item {{ (request()->is('courses*')) ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseThree">
@@ -142,6 +146,44 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Subject Settings:</h6>
                         <a class="collapse-item" href="/courses">Subjects</a>
+                        <!-- <a class="collapse-item" href="cards.html">Lessons</a> -->
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Sections Collapse Menu -->
+            <li class="nav-item {{ (request()->is('sections*')) ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseFive">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Sections</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Section Settings:</h6>
+                        <a class="collapse-item" href="/sections">Sections</a>
+                        <!-- <a class="collapse-item" href="cards.html">Lessons</a> -->
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider">
+
+            <div class="sidebar-heading">
+                Grading
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item {{ (request()->is('courses*')) ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="collapseFour">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Grades</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Grading:</h6>
+                        <a class="collapse-item" href="/courses">Grades</a>
                         <!-- <a class="collapse-item" href="cards.html">Lessons</a> -->
                     </div>
                 </div>

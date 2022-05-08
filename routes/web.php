@@ -44,7 +44,11 @@ Route::group(['middleware' => ['auth', 'permission:access admin']], function () 
 
     Route::get('/users', ['App\Http\Controllers\UserController', 'index'])->name('users.index');
     Route::get('/users/{user}', ['App\Http\Controllers\UserController', 'show'])->name('users.show');
+    Route::put('/users/{user}', ['App\Http\Controllers\UserController', 'update'])->name('users.update');
+    
+    Route::post('/users/add', ['App\Http\Controllers\UserController', 'add'])->name('users.add');
     Route::delete('/users/{user}', ['App\Http\Controllers\UserController', 'delete'])->name('users.delete');
+
     Route::post('/users/{user}/roles', ['App\Http\Controllers\UserController', 'assignRole'])->name('users.roles');
     Route::delete('/users/{user}/roles/{role}', ['App\Http\Controllers\UserController', 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', ['App\Http\Controllers\UserController', 'givePermission'])->name('users.permissions');
@@ -56,16 +60,17 @@ Route::group(['middleware' => ['auth', 'permission:access admin']], function () 
     Route::delete('/users/{id}/destroy', ['App\Http\Controllers\UserController', 'destroy'])->name('users.archive.destroy');
     Route::get('/users/{id}/restore', ['App\Http\Controllers\UserController', 'restore'])->name('users.archive.restore');
 
-    Route::get('/faculty', 'App\Http\Controllers\Admin\DashboardController@registered');
-    Route::get('/role-edit/{id}', 'App\Http\Controllers\Admin\DashboardController@roleedit');
-    Route::put('/role-update/{id}', 'App\Http\Controllers\Admin\DashboardController@roleupdate');
-    Route::delete('/role-delete/{id}', 'App\Http\Controllers\Admin\DashboardController@roledelete');
+    Route::get('/courses', 'App\Http\Controllers\Admin\CoursesController@index');
+    Route::post('/save-courses', 'App\Http\Controllers\Admin\CoursesController@save');
+    Route::get('/courses/{id}', 'App\Http\Controllers\Admin\CoursesController@edit');
+    Route::put('/courses-update/{id}', 'App\Http\Controllers\Admin\CoursesController@update');
+    Route::delete('/courses-delete/{id}', 'App\Http\Controllers\Admin\CoursesController@delete');
 
-    Route::get('/courses', 'App\Http\Controllers\Admin\CoursesController@course');
-    Route::post('/save-courses', 'App\Http\Controllers\Admin\CoursesController@savecourse');
-    Route::get('/courses/{id}', 'App\Http\Controllers\Admin\CoursesController@editcourse');
-    Route::put('/courses-update/{id}', 'App\Http\Controllers\Admin\CoursesController@updatecourse');
-    Route::delete('/courses-delete/{id}', 'App\Http\Controllers\Admin\CoursesController@deletecourse');
+    Route::get('/sections', ['App\Http\Controllers\Admin\SectionsController', 'index'])->name('sections.index');
+    Route::post('/save-sections', ['App\Http\Controllers\Admin\SectionsController', 'save'])->name('sections.save');
+    Route::delete('/sections-delete/{id}', ['App\Http\Controllers\Admin\SectionsController', 'delete'])->name('sections.delete');
+    Route::get('/sections/{id}', ['App\Http\Controllers\Admin\SectionsController', 'edit'])->name('sections.edit');
+    Route::put('/sections-update/{id}', ['App\Http\Controllers\Admin\SectionsController', 'update'])->name('sections.update');
 
 });
 

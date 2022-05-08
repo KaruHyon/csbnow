@@ -29,7 +29,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Faculty</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{{ $totals['user'] }}}</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{{ $totals['teacher'] }}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -47,7 +47,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Students</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">-</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{{ $totals['student'] }}}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-address-card fa-2x text-gray-300"></i>

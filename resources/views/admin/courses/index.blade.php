@@ -16,7 +16,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/save-courses" method="POST">
+      <form action="/save-course" method="POST">
       {{ csrf_field() }}
 
         <div class="modal-body">
@@ -85,7 +85,9 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Subjects</h6>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle"></i>  New Subject</button>
+                            @can('add')
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle"></i>  New Subject</button>
+                            @endcan
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -95,7 +97,9 @@
                                             <th>Subject ID</th>
                                             <th>Subject Title</th>
                                             <th class="col-md-5">Description</th>
-                                            <th class="col-md-2">Action</th>
+                                            @can('manage')
+                                              <th class="col-md-2">Action</th>
+                                            @endcan
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -108,10 +112,14 @@
                                                   {{ $data->description }}
                                                   </div>
                                                 </td>
+                                                @can('manage')
                                                 <td>
                                                   <a href="{{ url('courses/'.$data->id) }}" class="btn btn-success"><i class="fas fa-fw fa-edit"></i> Edit</a>
+                                                  @can('delete')
                                                   <a href="javascript:void(0)" class="btn btn-danger deletebtn"><i class="fas fa-fw fa-ban"></i>  Delete</a>
+                                                  @endcan
                                                 </td>
+                                                @endcan
                                             </tr>
                                       @endforeach
                                     </tbody>

@@ -13,7 +13,8 @@ class DashboardController extends Controller
     {
 
         $totals = [
-            'user' => User::count(),
+            'teacher' => User::permission('access admin')->count(),
+            'student' => User::role('student')->count(),
             'course' => Courses::count(),
         ];
         

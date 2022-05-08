@@ -9,13 +9,13 @@ use Spatie\Permission\Models\Permission;
 
 class CoursesController extends Controller
 {
-    public function course()
+    public function index()
     {
         $courses = Courses::all();
-        return view('admin.courses')->with('courses', $courses);
+        return view('admin.courses.index')->with('courses', $courses);
     }
 
-    public function savecourse(Request $request)
+    public function save(Request $request)
     {
         $courses = new Courses;
 
@@ -27,16 +27,16 @@ class CoursesController extends Controller
         Permission::create($validated);
 
         $courses->save();
-        return redirect('/courses')->with('status', 'Your new course has been added!');
+        return redirect('/courses')->with('status', 'Your new subject has been added!');
     }
 
-    public function editcourse($id)
+    public function edit($id)
     {
         $courses = Courses::findOrFail($id);
-        return view('admin.courses.course-edit')->with('courses', $courses);
+        return view('admin.courses.edit')->with('courses', $courses);
     }
 
-    public function updatecourse(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $courses = Courses::findOrFail($id);
 
@@ -49,10 +49,10 @@ class CoursesController extends Controller
         $courses->description = $request->input('course-description');
         $courses->update();
 
-        return redirect('courses')->with('status', 'Your course has been updated.');
+        return redirect('courses')->with('status', 'Your subject has been updated.');
     }
 
-    public function deletecourse($id)
+    public function delete($id)
     {
         $courses = Courses::findOrFail($id);
         $courses->delete();
@@ -60,6 +60,6 @@ class CoursesController extends Controller
         $perm = Permission::findByName($courses->id);
         $perm->delete();
         
-        return redirect('courses')->with('status', 'Your course has been deleted.');
+        return redirect('courses')->with('status', 'Your subject has been deleted.');
     }
 }
